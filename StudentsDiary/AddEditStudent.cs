@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -20,7 +21,6 @@ namespace StudentsDiary
 
             GetStudentData();
             tbName.Select();
-            _student.AditionalActivities = "NIE";
         }
 
         private void GetStudentData()
@@ -36,6 +36,7 @@ namespace StudentsDiary
                     throw new Exception("Brak studenta o podanym Id");
 
                 FillTextBoxes();
+                FillClassComboBox();
             }
         }
 
@@ -51,8 +52,17 @@ namespace StudentsDiary
             tbEnglish.Text = _student.ForeighLang;
             rtbRemarks.Text = _student.Remarks;
             ckBAditionalActivities.Checked = _student.AditionalActivities == "TAK" ? true : false;
+
         }
 
+        private void FillClassComboBox()
+        {
+            string[] classesList = File.ReadAllLines(Program.ClassesListPath);
+            foreach (string classes in classesList)
+            {
+                cboBClassesList.Items.Add(classes);
+            }
+        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
@@ -95,7 +105,7 @@ namespace StudentsDiary
                 Technology = tbTechnology.Text,
                 Remarks = rtbRemarks.Text,
                 AditionalActivities = SetAditionalActivitiesCell(ckBAditionalActivities.Checked),
-
+                GroupID=cboBClassesList.SelectedItem.ToString(),
         };
 
             students.Add(student);

@@ -49,6 +49,8 @@
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.ckBAditionalActivities = new System.Windows.Forms.CheckBox();
+            this.cboBClassesList = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbID
@@ -182,7 +184,7 @@
             // 
             // rtbRemarks
             // 
-            this.rtbRemarks.Location = new System.Drawing.Point(121, 300);
+            this.rtbRemarks.Location = new System.Drawing.Point(121, 281);
             this.rtbRemarks.Name = "rtbRemarks";
             this.rtbRemarks.Size = new System.Drawing.Size(218, 140);
             this.rtbRemarks.TabIndex = 16;
@@ -191,7 +193,7 @@
             // lblRemarks
             // 
             this.lblRemarks.AutoSize = true;
-            this.lblRemarks.Location = new System.Drawing.Point(15, 303);
+            this.lblRemarks.Location = new System.Drawing.Point(15, 281);
             this.lblRemarks.Name = "lblRemarks";
             this.lblRemarks.Size = new System.Drawing.Size(37, 13);
             this.lblRemarks.TabIndex = 17;
@@ -221,18 +223,37 @@
             // 
             this.ckBAditionalActivities.AutoSize = true;
             this.ckBAditionalActivities.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ckBAditionalActivities.Location = new System.Drawing.Point(12, 237);
+            this.ckBAditionalActivities.Location = new System.Drawing.Point(18, 242);
             this.ckBAditionalActivities.Name = "ckBAditionalActivities";
             this.ckBAditionalActivities.Size = new System.Drawing.Size(137, 17);
             this.ckBAditionalActivities.TabIndex = 20;
             this.ckBAditionalActivities.Text = "Dodatkowe aktywności";
             this.ckBAditionalActivities.UseVisualStyleBackColor = true;
             // 
+            // cboBClassesList
+            // 
+            this.cboBClassesList.FormattingEnabled = true;
+            this.cboBClassesList.Location = new System.Drawing.Point(257, 239);
+            this.cboBClassesList.Name = "cboBClassesList";
+            this.cboBClassesList.Size = new System.Drawing.Size(82, 21);
+            this.cboBClassesList.TabIndex = 21;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(203, 242);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Klasa";
+            // 
             // AddEditStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 526);
+            this.ClientSize = new System.Drawing.Size(356, 503);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cboBClassesList);
             this.Controls.Add(this.ckBAditionalActivities);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
@@ -254,8 +275,8 @@
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbID);
-            this.MaximumSize = new System.Drawing.Size(380, 565);
-            this.MinimumSize = new System.Drawing.Size(380, 565);
+            this.MaximumSize = new System.Drawing.Size(372, 542);
+            this.MinimumSize = new System.Drawing.Size(372, 542);
             this.Name = "AddEditStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dodawanie ucznia";
@@ -287,5 +308,7 @@
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.CheckBox ckBAditionalActivities;
+        private System.Windows.Forms.ComboBox cboBClassesList;
+        private System.Windows.Forms.Label label2;
     }
 }

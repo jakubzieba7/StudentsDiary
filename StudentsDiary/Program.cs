@@ -10,6 +10,7 @@ namespace StudentsDiary
     internal static class Program
     {
         public static string FilePath = Path.Combine($@"{Path.GetDirectoryName(Application.ExecutablePath)}", "Students.txt");
+        public static string ClassesListPath = Path.Combine($@"{Path.GetDirectoryName(Application.ExecutablePath)}", "ClassesList.txt");
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
