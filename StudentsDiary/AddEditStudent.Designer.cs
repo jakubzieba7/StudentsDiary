@@ -49,7 +49,7 @@
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.ckBAditionalActivities = new System.Windows.Forms.CheckBox();
-            this.cboBClassesList = new System.Windows.Forms.ComboBox();
+            this.cboBGroupIDList = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -230,13 +230,13 @@
             this.ckBAditionalActivities.Text = "Dodatkowe aktywności";
             this.ckBAditionalActivities.UseVisualStyleBackColor = true;
             // 
-            // cboBClassesList
+            // cboBGroupIDList
             // 
-            this.cboBClassesList.FormattingEnabled = true;
-            this.cboBClassesList.Location = new System.Drawing.Point(257, 239);
-            this.cboBClassesList.Name = "cboBClassesList";
-            this.cboBClassesList.Size = new System.Drawing.Size(82, 21);
-            this.cboBClassesList.TabIndex = 21;
+            this.cboBGroupIDList.FormattingEnabled = true;
+            this.cboBGroupIDList.Location = new System.Drawing.Point(257, 239);
+            this.cboBGroupIDList.Name = "cboBGroupIDList";
+            this.cboBGroupIDList.Size = new System.Drawing.Size(82, 21);
+            this.cboBGroupIDList.TabIndex = 21;
             // 
             // label2
             // 
@@ -253,7 +253,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(356, 503);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.cboBClassesList);
+            this.Controls.Add(this.cboBGroupIDList);
             this.Controls.Add(this.ckBAditionalActivities);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
@@ -308,7 +308,7 @@
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.CheckBox ckBAditionalActivities;
-        private System.Windows.Forms.ComboBox cboBClassesList;
+        private System.Windows.Forms.ComboBox cboBGroupIDList;
         private System.Windows.Forms.Label label2;
     }
 }

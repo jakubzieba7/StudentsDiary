@@ -33,6 +33,8 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.dgvDiary = new System.Windows.Forms.DataGridView();
+            this.cboBGroupIDFilter = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiary)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,12 +98,32 @@
             this.dgvDiary.Size = new System.Drawing.Size(957, 406);
             this.dgvDiary.TabIndex = 4;
             // 
+            // cboBGroupIDFilter
+            // 
+            this.cboBGroupIDFilter.FormattingEnabled = true;
+            this.cboBGroupIDFilter.Location = new System.Drawing.Point(567, 12);
+            this.cboBGroupIDFilter.Name = "cboBGroupIDFilter";
+            this.cboBGroupIDFilter.Size = new System.Drawing.Size(110, 21);
+            this.cboBGroupIDFilter.TabIndex = 5;
+            this.cboBGroupIDFilter.SelectedValueChanged += new System.EventHandler(this.cboBClassesFilter_SelectedValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(500, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Filtr klasy";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(966, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cboBGroupIDFilter);
             this.Controls.Add(this.dgvDiary);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnDelete);
@@ -112,6 +134,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiary)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -122,6 +145,8 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridView dgvDiary;
+        private System.Windows.Forms.ComboBox cboBGroupIDFilter;
+        private System.Windows.Forms.Label label1;
     }
 }
 

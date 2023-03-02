@@ -1,6 +1,7 @@
 ﻿using StudentsDiary.Properties;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -26,16 +27,24 @@ namespace StudentsDiary
             InitializeComponent();
             RefreshDiary();
             SetColumnsHeader();
+            FillFilterClassComboBox();
 
             if (IsMaximize)
                 WindowState = FormWindowState.Maximized;
-
         }
 
         private void RefreshDiary()
         {
             var studentList = _fileHelper.Deserialize().OrderBy(x => x.Id).ToList();
+            
+            for (int i = 0; i < studentList.Count; i++)
+            {
+                studentList[i].Id = i + 1;
+            }
+
+            _fileHelper.SerializeToFile(studentList);
             dgvDiary.DataSource = studentList;
+            cboBGroupIDFilter.SelectedItem = "Wszystkie";
         }
 
         private void SetColumnsHeader()
@@ -120,6 +129,29 @@ namespace StudentsDiary
                 IsMaximize = false;
 
             Settings.Default.Save();
+        }
+
+        private void FillFilterClassComboBox()
+        {
+            string[] classesList = File.ReadAllLines(Program.GroupIDListPath);
+            cboBGroupIDFilter.Items.Add("Wszystkie");
+            foreach (string classes in classesList)
+            {
+                cboBGroupIDFilter.Items.Add(classes);
+            }
+        }
+
+        private void cboBClassesFilter_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var studentList = _fileHelper.Deserialize().OrderBy(x => x.Id);
+            var filteredStudentList = new List<Student>();
+
+            if (cboBGroupIDFilter.SelectedItem.ToString() == "Wszystkie")
+                filteredStudentList = studentList.ToList();
+            else
+                filteredStudentList = studentList.Where(x => x.GroupID == cboBGroupIDFilter.SelectedItem.ToString()).ToList();
+            
+            dgvDiary.DataSource = filteredStudentList;
         }
     }
 }

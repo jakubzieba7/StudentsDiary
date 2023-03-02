@@ -14,6 +14,5 @@ namespace StudentsDiary
         public string Remarks { get; set; }
         public string AditionalActivities { get; set; }
         public string GroupID { get; set; }
-        
     }
 }

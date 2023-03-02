@@ -25,6 +25,8 @@ namespace StudentsDiary
 
         private void GetStudentData()
         {
+            FillGroupIDComboBox();
+
             if (_studentId != 0)
             {
                 Text = "Edytowanie danych ucznia";
@@ -33,10 +35,9 @@ namespace StudentsDiary
                 _student = students.FirstOrDefault(x => x.Id == _studentId);
 
                 if (_student == null)
-                    throw new Exception("Brak studenta o podanym Id");
+                    throw new Exception("Brak studenta o podanym Id.");
 
                 FillTextBoxes();
-                FillClassComboBox();
             }
         }
 
@@ -52,15 +53,15 @@ namespace StudentsDiary
             tbEnglish.Text = _student.ForeighLang;
             rtbRemarks.Text = _student.Remarks;
             ckBAditionalActivities.Checked = _student.AditionalActivities == "TAK" ? true : false;
-
+            cboBGroupIDList.SelectedItem = _student.GroupID;
         }
 
-        private void FillClassComboBox()
+        private void FillGroupIDComboBox()
         {
-            string[] classesList = File.ReadAllLines(Program.ClassesListPath);
-            foreach (string classes in classesList)
+            string[] groupIDList = File.ReadAllLines(Program.GroupIDListPath);
+            foreach (string groupID in groupIDList)
             {
-                cboBClassesList.Items.Add(classes);
+                cboBGroupIDList.Items.Add(groupID);
             }
         }
         private void btnCancel_Click(object sender, EventArgs e)
@@ -73,16 +74,30 @@ namespace StudentsDiary
             var students = _fileHelper.Deserialize();
 
             if (_studentId != 0)
+            {
                 students.RemoveAll(x => x.Id == _studentId);
+            }
             else
                 AssignIdToNewStudent(students);
-
+            
+            try
+            {
+                if (cboBGroupIDList.SelectedItem == null)
+                {
+                    MessageBox.Show("Nie wskazałeś do jakiej klasy należy uczeń. Została wskazana domyślna klasa (Ia).");
+                    cboBGroupIDList.SelectedItem = "Ia";
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
             AddNewStudentList(students);
 
             _fileHelper.SerializeToFile(students);
 
             Close();
-
         }
 
         private void AssignIdToNewStudent(List<Student>students)
@@ -105,7 +120,7 @@ namespace StudentsDiary
                 Technology = tbTechnology.Text,
                 Remarks = rtbRemarks.Text,
                 AditionalActivities = SetAditionalActivitiesCell(ckBAditionalActivities.Checked),
-                GroupID=cboBClassesList.SelectedItem.ToString(),
+                GroupID=cboBGroupIDList.SelectedItem.ToString(),
         };
 
             students.Add(student);
