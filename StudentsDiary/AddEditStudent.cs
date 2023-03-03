@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -19,13 +18,13 @@ namespace StudentsDiary
             InitializeComponent();
             _studentId= id;
 
+            FillGroupIDComboBox();
             GetStudentData();
             tbName.Select();
         }
 
         private void GetStudentData()
         {
-            FillGroupIDComboBox();
 
             if (_studentId != 0)
             {
@@ -53,16 +52,12 @@ namespace StudentsDiary
             tbEnglish.Text = _student.ForeighLang;
             rtbRemarks.Text = _student.Remarks;
             ckBAditionalActivities.Checked = _student.AditionalActivities == "TAK" ? true : false;
-            cboBGroupIDList.SelectedItem = _student.GroupID;
+            cboBGroupIDList.Text = _student.GroupID;
         }
 
         private void FillGroupIDComboBox()
         {
-            string[] groupIDList = File.ReadAllLines(Program.GroupIDListPath);
-            foreach (string groupID in groupIDList)
-            {
-                cboBGroupIDList.Items.Add(groupID);
-            }
+            cboBGroupIDList.DataSource = Enum.GetValues(typeof(GroupIDList));
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -79,20 +74,7 @@ namespace StudentsDiary
             }
             else
                 AssignIdToNewStudent(students);
-            
-            try
-            {
-                if (cboBGroupIDList.SelectedItem == null)
-                {
-                    MessageBox.Show("Nie wskazałeś do jakiej klasy należy uczeń. Została wskazana domyślna klasa (Ia).");
-                    cboBGroupIDList.SelectedItem = "Ia";
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            
+
             AddNewStudentList(students);
 
             _fileHelper.SerializeToFile(students);
@@ -120,8 +102,8 @@ namespace StudentsDiary
                 Technology = tbTechnology.Text,
                 Remarks = rtbRemarks.Text,
                 AditionalActivities = SetAditionalActivitiesCell(ckBAditionalActivities.Checked),
-                GroupID=cboBGroupIDList.SelectedItem.ToString(),
-        };
+                GroupID = cboBGroupIDList.SelectedItem.ToString(),
+            };
 
             students.Add(student);
         }

@@ -25,9 +25,9 @@ namespace StudentsDiary
         public Main()
         {
             InitializeComponent();
+            FillFilterClassComboBox();
             RefreshDiary();
             SetColumnsHeader();
-            FillFilterClassComboBox();
 
             if (IsMaximize)
                 WindowState = FormWindowState.Maximized;
@@ -35,6 +35,7 @@ namespace StudentsDiary
 
         private void RefreshDiary()
         {
+            cboBGroupIDFilter.SelectedItem = "Wszystkie";
             var studentList = _fileHelper.Deserialize().OrderBy(x => x.Id).ToList();
             
             for (int i = 0; i < studentList.Count; i++)
@@ -44,7 +45,6 @@ namespace StudentsDiary
 
             _fileHelper.SerializeToFile(studentList);
             dgvDiary.DataSource = studentList;
-            cboBGroupIDFilter.SelectedItem = "Wszystkie";
         }
 
         private void SetColumnsHeader()
@@ -133,11 +133,12 @@ namespace StudentsDiary
 
         private void FillFilterClassComboBox()
         {
-            string[] classesList = File.ReadAllLines(Program.GroupIDListPath);
+            List<GroupIDList> groupIDList = Enum.GetValues(typeof(GroupIDList)).Cast<GroupIDList>().ToList();
             cboBGroupIDFilter.Items.Add("Wszystkie");
-            foreach (string classes in classesList)
+
+            foreach (var groupIDs in groupIDList)
             {
-                cboBGroupIDFilter.Items.Add(classes);
+                cboBGroupIDFilter.Items.Add(groupIDs);
             }
         }
 
