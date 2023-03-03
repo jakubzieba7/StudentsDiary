@@ -1,7 +1,6 @@
 ﻿using StudentsDiary.Properties;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -61,8 +60,6 @@ namespace StudentsDiary
             dgvDiary.Columns[9].HeaderText = "Dodatkowe aktywności";
             dgvDiary.Columns[10].HeaderText = "Klasa";
         }
-
-        
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
